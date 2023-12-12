@@ -37,7 +37,8 @@ primary key (id)
 - Mysql 8.0 默认账号/密码:root/123456 端口3306
 ---
 
-####访问地址
+#### 访问地址
 [http://localhost:8080/demo/web/index.html](http://localhost:8080/demo/web/index.html "http://localhost:8080/demo/web/index.html")
 ---
-![index](https://github.com/knsv/mermaid#flowchart "index")
+![image](https://github.com/971171444/demo/blob/main/img-folder/index.png)
+![image](https://github.com/971171444/demo/blob/main/img-folder/statistic.png)
