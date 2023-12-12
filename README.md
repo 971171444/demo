@@ -33,7 +33,6 @@ primary key (id)
 
 #### 服务启动
 - 本地IDE run 或 直接执行打包好的 demo.jar
-- Maven 3
 - Mysql 8.0 默认账号/密码:root/123456 端口3306
 ---
 
