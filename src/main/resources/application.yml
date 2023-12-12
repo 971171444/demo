@@ -8,7 +8,7 @@ demo:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     pool-name: datacenter
-    jdbc-url: jdbc:mysql://192.168.0.103:30336/demo?useSSL=false&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    jdbc-url: jdbc:mysql://localhost:3306/demo?useSSL=false&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
 spring:
