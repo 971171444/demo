@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.test.demo.mapper.DataMapper">
+    <resultMap id="resultMap" type="com.test.demo.entity.DataEntity">
+        <result column="day_part" property="dayPart"/>
+        <result column="local_air_date" property="localAirDate"/>
+        <result column="local_air_time" property="localAirTime"/>
+        <result column="local_air_day" property="localAirDay"/>
+        <result column="station" property="station"/>
+        <result column="mod_program" property="modProgram"/>
+        <result column="cpc" property="cpc"/>
+        <result column="cpo" property="cpo"/>
+        <result column="cost" property="cost"/>
+        <result column="web_revenue" property="webRevenue"/>
+        <result column="web_order" property="webOrder"/>
+    </resultMap>
+    <insert id="saveInBatch" parameterType="ArrayList" useGeneratedKeys="true">
+        insert into data
+        (day_part, local_air_date, local_air_time, local_air_day, station,
+        mod_program, cpc, cpo, cost, web_revenue, web_order)
+        values
+        <foreach collection="list" index="index" item="item" separator=",">
+            (#{item.dayPart},#{item.localAirDate},#{item.localAirTime},#{item.localAirDay},
+            #{item.station},#{item.modProgram},#{item.cpc},#{item.cpo},#{item.cost},
+            #{item.webRevenue},#{item.webOrder}
+            )
+        </foreach>
+    </insert>
+    <select id="getROAS" resultType="java.util.Map">
+        select station, (sum(web_revenue) / sum(cost)) as ROAS
+        from data
+        group by station
+        order by ROAS desc
+    </select>
+    <select id="getTop5" resultType="java.util.Map">
+        select mod_program, sum(web_order) as web_order
+        from data
+        where mod_program is not null
+        group by mod_program
+        order by web_order desc
+        limit 5
+    </select>
+    <select id="getBarChart" resultType="java.util.Map">
+        select station, sum(cost) as cost, sum(web_revenue) as revenue
+        from data
+        group by station
+        order by station desc
+    </select>
+    <select id="getLineChart" resultType="java.util.Map">
+        select DATE_FORMAT(local_air_date, '%Y-%m') AS month, sum(cost) as cost, sum(web_revenue) as revenue
+        from data
+        group by month
+        order by month
+    </select>
+</mapper>

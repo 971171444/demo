@@ -1,0 +1,21 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /demo
+  application:
+    name: demo
+demo:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    pool-name: datacenter
+    jdbc-url: jdbc:mysql://192.168.0.103:30336/demo?useSSL=false&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+spring:
+  thymeleaf:
+    prefix: classpath:/html/
+    suffix: .html
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
